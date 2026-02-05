@@ -2,9 +2,8 @@
 
 namespace App\Filament\Resources\Aspirasis\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class AspirasisTable
@@ -13,7 +12,29 @@ class AspirasisTable
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('input_aspirasi.nama_siswa')
+                    ->label('Siswa')
+                    ->searchable(),
+                TextColumn::make('input_aspirasi.aspirasi_siswa')
+                    ->label('Aspirasi')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('kategori.nama_kategori')
+                    ->label('Kategori')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('status')
+                ->badge()
+                ->colors(fn (string $state): string => match ($state) {
+                    'Terkirim' => 'red',
+                    'Terbaca' => 'blue',
+                    'Diproses' => 'yellow',
+                    'Selesai' => 'green',
+                    default => 'gray',
+                })
+                    ->searchable()
+                    ->sortable()
+                    ->default('Terkirim'),
             ])
             ->filters([
                 //
@@ -22,9 +43,7 @@ class AspirasisTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }

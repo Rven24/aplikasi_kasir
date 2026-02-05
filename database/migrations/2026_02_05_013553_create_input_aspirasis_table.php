@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aspirasis', function (Blueprint $table) {
+        Schema::create('input_aspirasis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('input_aspirasis_id')->constrained('input_aspirasis');
+            $table->string('nama_siswa');
+            $table->string('aspirasi_siswa');
             $table->foreignId('kategoris_id')->constrained();
-            $table->enum('status', ['terkirim', 'terbaca', 'proses', 'selesai']);
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aspirasis');
+        Schema::dropIfExists('input_aspirasis');
     }
 };

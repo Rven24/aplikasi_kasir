@@ -10,10 +10,10 @@ class ListAspirasis extends ListRecords
 {
     protected static string $resource = AspirasiResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            CreateAction::make(),
-        ];
-    }
+    // protected function getHeaderActions(): array
+    // {
+    //     return [
+    //         CreateAction::make(),
+    //     ];
+    // }
 }
